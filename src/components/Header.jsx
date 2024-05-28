@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Miners from "./Miners";
+import React from "react";
 
 export default function Header({setShowMines, setShowBlock}) {
   return (
