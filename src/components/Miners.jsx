@@ -7,10 +7,10 @@ export default function Miners({visible}) {
   const [showFile, setShowFile] = useState(false);
   
  const checkShow = () => {
-  if (setShowModal == true) {
+  if (setShowModal === true) {
     setShowFile(false)
   }
-  if (setShowFile == true) {
+  if (setShowFile === true) {
     setShowModal(false)
   }
  }
