@@ -3,22 +3,13 @@ import PropMiners from "./PropMiners";
 import SoloMiners from "./SoloMiners";
 
 export default function Miners({visible}) {
+  const [activeMiners, setActiveMiners] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [showFile, setShowFile] = useState(false);
   
- const checkShow = () => {
-  if (setShowModal === true) {
-    setShowFile(false)
-  }
-  if (setShowFile === true) {
-    setShowModal(false)
-  }
- }
- const handleOnClose = () => {
-    setShowModal(false);
-    setShowFile(false)
-    console.log('asdwqqqqqqqqqqqqqqqqqqqqq')
- }
+ const handleClick = (buttonNumber) => {
+  setActiveMiners(buttonNumber);
+};
  if (!visible) return null;
 
   return (
@@ -31,36 +22,27 @@ export default function Miners({visible}) {
         <button
           type="button"
           class="w-96 h-10 m-auto text-center font-medium justify-center hs-tab-active:font-semibold hs-tab-active:border-blue-600 hs-tab-active:text-blue-600 py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-base whitespace-nowrap text-white hover:text-orange-400 focus:outline-none focus:text-orange-400 disabled:opacity-50 disabled:pointer-events-none"
-          id="tabs-with-underline-item-2"
-          data-hs-tab="#tabs-with-underline-2"
-          aria-controls="tabs-with-underline-2"
-          role="tab"
-          onClick={() => setShowModal(true)}
-          onChange={checkShow}
-          onDoubleClick={handleOnClose}
+          onClick={() => handleClick(1)}
+          // onChange={checkShow}
+          onDoubleClick={() => setShowModal(true)}
+
         >
           PROP
         </button>
         <button
           type="button"
           class="w-96 h-10 text-center justify-center font-medium m-auto hs-tab-active:font-semibold hs-tab-active:border-blue-600 hs-tab-active:text-blue-600 py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-base whitespace-nowrap text-white hover:text-orange-400 focus:outline-none focus:text-orange-400 disabled:opacity-50 disabled:pointer-events-none"
-          id="tabs-with-underline-item-3"
-          data-hs-tab="#tabs-with-underline-3"
-          aria-controls="tabs-with-underline-3"
-          role="tab"
-          onClick={() => setShowFile(true)}
-          onChange={checkShow}
-          onDoubleClick={handleOnClose}
+          onClick={() => handleClick(2)}
+          // onChange={checkShow}
+          onDoubleClick={() => setShowFile(true)}
         >
           SOLO
         </button>
       </div>
-      <div>
-        <PropMiners visible={showModal}></PropMiners>
-      </div>
-      <div>
-      <SoloMiners visible={showFile}></SoloMiners>
-      </div>
+      {activeMiners === 1 && <PropMiners visible={showModal}></PropMiners>}
+
+      {activeMiners === 2 && <SoloMiners visible={showFile}></SoloMiners>}
+
     </div>
   );
 }
