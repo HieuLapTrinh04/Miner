@@ -1,10 +1,30 @@
 .App {
   text-align: center;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.25);
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
